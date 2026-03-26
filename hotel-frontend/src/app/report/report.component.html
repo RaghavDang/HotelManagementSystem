@@ -1,0 +1,60 @@
+ <div class="container">
+
+  <h3 class="mb-4">Booking Report</h3>
+
+  <!-- FILTERS -->
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+      <label>Location</label>
+      <select class="form-select"
+              [(ngModel)]="selectedLocation"
+              (change)="loadReport()">
+        <option value="">All</option>
+        <option *ngFor="let loc of locations">{{ loc }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label>Month</label>
+      <select class="form-select"
+              [(ngModel)]="selectedMonth"
+              (change)="loadReport()">
+        <option value="">All</option>
+        <option *ngFor="let m of months" [value]="m.value">
+          {{ m.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label>Year</label>
+      <select class="form-select"
+              [(ngModel)]="selectedYear"
+              (change)="loadReport()">
+        <option value="">All</option>
+        <option *ngFor="let y of years">{{ y }}</option>
+      </select>
+    </div>
+    
+<!-- ✅ NEW: Chart Type -->
+    <div class="col-md-3">
+      <label>Chart Type</label>
+      <select class="form-select"
+              [(ngModel)]="selectedChartType"
+              (change)="onChartTypeChange()">
+        <option value="pie">Pie Chart</option>
+        <option value="bar">Bar Graph</option>
+      </select>
+    </div>
+
+
+  </div>
+
+  <!-- CHART -->
+  <div class="card shadow p-3" style="width: 350px; height: 350px; margin: auto;">
+    <canvas id="reportChart"></canvas>
+  </div>
+
+</div>
+

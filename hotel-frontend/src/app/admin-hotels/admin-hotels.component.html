@@ -1,0 +1,77 @@
+<div class="container mt-4 mb-5">
+
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Add New Hotel</h4>
+    </div>
+
+    <div class="card-body">
+
+      <form (ngSubmit)="submitHotel()" class="row g-3">
+
+        <!-- Hotel Name -->
+        <div class="col-12">
+          <label class="form-label">Hotel Name</label>
+          <input type="text" class="form-control" [(ngModel)]="hotel.name" name="name" required>
+        </div>
+
+        <!-- Location -->
+        <div class="col-12">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control" [(ngModel)]="hotel.location" name="location" required>
+        </div>
+
+        <!-- Rating -->
+        <div class="col-12">
+          <label class="form-label">Rating</label>
+          <input type="number" class="form-control" [(ngModel)]="hotel.rating" name="rating" min="0" max="5" required>
+        </div>
+
+        <!-- Price -->
+        <div class="col-12">
+          <label class="form-label">Price (per night)</label>
+          <input type="number" class="form-control" [(ngModel)]="hotel.price" name="price" required>
+        </div>
+
+        <!-- Room Type -->
+        <div class="col-12">
+          <label class="form-label">Room Type</label>
+          <select class="form-select" [(ngModel)]="hotel.roomType" name="roomType" required>
+            <option value="" disabled selected>Select room type</option>
+            <option>Single</option>
+            <option>Double</option>
+            <option>Suite</option>
+            <option>Deluxe</option>
+            <option>Family</option>
+          </select>
+        </div>
+
+        <!-- Features -->
+        <div class="col-12">
+          <label class="form-label">Features (comma separated)</label>
+          <input type="text" class="form-control" [(ngModel)]="hotel.features" name="features" placeholder="Free Wi-Fi, AC, Swim Pool">
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="hotel.description" name="description"></textarea>
+        </div>
+
+        <!-- Images -->
+        <div class="col-12">
+          <label class="form-label">Image URLs (comma separated)</label>
+          <input type="text" class="form-control" [(ngModel)]="hotel.images" name="images" placeholder="https://example.com/pic1.jpg, https://pic2.jpg">
+        </div>
+
+        <!-- Submit -->
+        <div class="col-12 text-end">
+          <button class="btn btn-success px-4">Add Hotel</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+<h3>Profile</h3>
+<hr>
+
+<div class="card p-4 shadow-sm">
+
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+
+  <h5 class="mt-3">Preferences</h5>
+  <p><strong>Default Location:</strong> {{ user.preferences?.defaultLocation }}</p>
+  <p><strong>Default Max Price:</strong> {{ user.preferences?.defaultAmount }}</p>
+
+  <button class="btn btn-primary btn-sm mt-3 me-2" (click)="toggleEdit()">
+    Edit Preferences
+  </button>
+
+  <button class="btn btn-secondary btn-sm mt-3" (click)="togglePassword()">
+    Change Password
+  </button>
+
+</div>
+
+<!-- PREFERENCES MODAL -->
+<app-edit-preferences
+  *ngIf="showEdit"
+  [user]="user"
+  (close)="showEdit=false"
+  (saved)="updateLocal($event)">
+</app-edit-preferences>
+
+<!-- CHANGE PASSWORD MODAL -->
+<app-change-password
+  *ngIf="showPassword"
+  [user]="user"
+  (close)="showPassword=false">
+</app-change-password>

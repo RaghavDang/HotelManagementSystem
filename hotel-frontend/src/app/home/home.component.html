@@ -1,0 +1,117 @@
+
+<div class="row">
+
+  <!-- LEFT FILTER PANEL -->
+  <div class="col-md-3">
+    <div class="card p-3 shadow-sm ">
+
+      <h5 class="mb-3">Filters</h5>
+
+      <!-- For Location -->
+      <div class="mb-3">
+        <label>Location</label>
+
+        <!-- Displaying the dropdown list of locations to choose -->
+        <select class="form-select"
+                [(ngModel)]="selectedLocation"
+                (change)="loadHotels()">
+                <option value="">All</option>
+                <option *ngFor="let loc of locations"  [value]="loc">{{ loc }}</option>
+        </select>
+      </div>
+
+        <!-- Search with name  -->
+      <div class="mb-3">
+        <label>Search</label>
+        <input class="form-control"
+               [(ngModel)]="searchText"
+               (input)="loadHotels()"
+               placeholder="Search hotel...">
+      </div>
+
+      <!-- For min price -->
+      <div class="mb-3">
+        <label>Min Price</label>
+        <input type="number"
+               class="form-control"
+               [(ngModel)]="minPrice"
+               (input)="loadHotels()">
+      </div>
+
+      <!-- For max price -->
+      <div class="mb-3">
+        <label>Max Price</label>
+        <input type="number"
+               class="form-control"
+               [(ngModel)]="maxPrice"
+               (input)="loadHotels()">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="col-md-9">
+
+    <!-- SHOW HOTEL CARDS (DEFAULT VIEW) -->
+    <div *ngIf="!selectedHotel && !selectedHotelForBooking">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let hotel of hotels">
+          <app-hotel-card
+            [hotel]="hotel"
+            (open)="openDetails(hotel)">
+          </app-hotel-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOW HOTEL DETAILS (WHEN A CARD IS CLICKED) -->
+    <div *ngIf="selectedHotel && !selectedHotelForBooking">
+      
+      <!-- HOTEL DETAILS MODAL -->
+      <app-hotel-details
+      *ngIf="selectedHotel"
+      [hotel]="selectedHotel"
+      (close)="selectedHotel=null"
+      (book)="openBooking($event)"
+      (reschedule)="openReschedule($event)"
+      (cancel)="cancelBooking($event)">
+      </app-hotel-details>
+    
+    </div>
+
+    
+      <app-booking-modal
+        *ngIf="selectedHotelForBooking"
+        [hotel]="selectedHotelForBooking"
+        (close)="selectedHotelForBooking=null">
+      </app-booking-modal>
+
+       <app-booking-modal
+      *ngIf="selectedBooking"
+      [booking]="selectedBooking"
+      (close)="selectedBooking=null;">
+    </app-booking-modal>
+
+
+  </div>
+
+</div>
+
+
+
+
+<!-- FOOTER -->
+<!-- <footer class="footer bg-light text-center py-3 mt-5 shadow-sm">
+
+  <div class="small text-muted">
+    © {{ currentYear }} TripEase. All rights reserved.
+  </div>
+
+  <div class="small mt-1">
+    Created with ❤️ by <strong>Raghav</strong>
+  </div>
+
+</footer> -->
+
+

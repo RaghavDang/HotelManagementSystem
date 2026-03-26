@@ -1,0 +1,195 @@
+
+<!-- <div class="card shadow p-4"> -->
+
+  <!-- TOP IMAGE -->
+  <!-- <img class="img-fluid rounded mb-3"
+       [src]="hotel.images[0] || 'assets/hotel.jpg'"
+       style="height:300px; object-fit:cover; width:100%;">
+
+  <h3 class="text-primary">{{ hotel.name }}</h3>
+
+  <p class="mt-2">{{ hotel.description }}</p>
+
+  <div class="row mt-3">
+
+    <div class="col-md-6">
+      <p><strong>Location:</strong> {{ hotel.location }}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p><strong>Rating:</strong> ⭐ {{ hotel.rating }}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p><strong>Price:</strong> ₹ {{ hotel.price }}</p>
+    </div>
+
+  </div>
+
+  <hr class="my-4"> -->
+
+  <!-- SIMILAR HOTELS -->
+  <!-- <h5 class="mb-3">Similar Hotels</h5>
+
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let s of similarHotels">
+
+      <div class="card p-2 shadow-sm">
+        <img class="img-fluid rounded mb-2"
+             [src]="s.images?.[0] || 'assets/hotel.jpg'"
+             style="height:120px; object-fit:cover; width:100%;">
+
+        <b>{{ s.name }}</b>
+        <p class="mb-1">₹ {{ s.price }}</p>
+      </div>
+
+    </div>
+  </div> -->
+
+  <!-- <hr class="my-4"> -->
+
+
+  <!-- ACTION BUTTONS -->
+<!-- <div class="d-flex justify-content-between align-items-center mt-3">
+
+  <button class="btn btn-secondary"
+          (click)="close.emit()">
+    ← Back
+  </button>
+
+  <div>
+    <button class="btn btn-outline-primary me-2"
+            (click)="bookmarkHotel()">
+      ⭐ Bookmark
+    </button>
+
+    <button class="btn btn-success"
+            (click)="openBooking()">
+      Book Now
+    </button>
+  </div>
+
+</div>
+
+
+</div> -->
+
+
+<!-- -------------------------------------------------- -->
+
+
+<div class="modal-backdrop fade show"></div>
+
+<div class="modal d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">{{ hotel.name }}</h5>
+        <button class="btn-close" (click)="close.emit()"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <img class="img-fluid rounded mb-3"
+             [src]="hotel.images?.[0] || 'assets/hotel.jpg'">
+
+        <p>{{ hotel.description }}</p>
+        <p><strong>Location:</strong> {{ hotel.location }}</p>
+        <p><strong>Rating:</strong> ⭐ {{ hotel.rating }}</p>
+        <p><strong>Room Type:</strong> {{ hotel.roomType || 'Standard' }}</p>
+        <p><strong>Price:</strong> ₹ {{ hotel.price }}</p>
+
+        <!-- FEATURES -->
+        <div class="mt-3">
+          <strong>Features:</strong>
+
+          <div class="d-flex flex-wrap gap-2 mt-2">
+            <span class="badge bg-light text-dark border"
+                  *ngFor="let f of hotel.features">
+              {{ f }}
+            </span>
+          </div>
+        </div>
+        <br>
+
+        <hr>
+
+        <!-- ACTION BUTTONS -->
+        <div class="d-flex justify-content-end gap-2">
+
+        
+
+
+           <button class="btn btn-outline-primary me-2"
+              (click)="toggleBookmark()">
+
+                <span *ngIf="!isBookmarked(hotel._id)">
+                  ⭐ Bookmark 
+                </span>
+
+                <span *ngIf="isBookmarked(hotel._id)" class="text-success" >
+                   ❌ Remove Bookmark
+                </span>
+
+            </button>
+
+          <!-- NOT BOOKED -->
+          <button *ngIf="!isBooked"
+                  class="btn btn-success"
+                  (click)="book.emit(hotel)">
+            Book Now
+          </button>
+
+
+          <!-- BOOKED & FUTURE DATE -->
+          <ng-container *ngIf="isBooked && isFutureBooking">
+            <button class="btn btn-warning"
+                    (click)="reschedule.emit(booking)">
+              Reschedule
+            </button>
+
+            <button class="btn btn-danger"
+                    (click)="cancel.emit(booking._id)">
+              Cancel
+            </button>
+          </ng-container>
+
+        </div>
+
+        <hr>
+
+        <!-- SIMILAR HOTELS -->
+        <h6>Similar Hotels</h6>
+        <div class="row">
+          <div class="col-md-4 mb-2" *ngFor="let s of similarHotels">
+            <div class="card p-2 shadow-sm">
+              <!-- <b>{{ s.name }}</b>
+              <p>₹ {{ s.price }}</p> -->
+               <img class="img-fluid rounded mb-2"
+             [src]="s.images?.[0] || 'assets/hotel.jpg'"
+             style="height:120px; object-fit:cover; width:100%;">
+
+        <b>{{ s.name }}</b>
+        <p class="mb-1">₹ {{ s.price }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="message" 
+     class="alert"
+     [ngClass]="{
+       'alert-success': messageType === 'success',
+       'alert-danger': messageType === 'danger'
+     }">
+  {{ message }}
+</div> -->

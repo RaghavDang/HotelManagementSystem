@@ -1,0 +1,19 @@
+
+
+
+<div class="card shadow-sm p-2"  style="cursor:pointer;"
+      (click)="open.emit(hotel)">
+
+  <img class="img-fluid rounded mb-2"
+       [src]="hotel.images?.[0] || 'assets/hotel.jpg'"
+       style="height:150px; object-fit:cover;">
+
+  <!-- CLICKABLE HOTEL NAME -->
+  <h5 class="text-primary">
+    {{ hotel.name }}
+  </h5>
+
+  <p>₹ {{ hotel.price }}</p>
+  <p>⭐ {{ hotel.rating }}</p>
+
+</div>

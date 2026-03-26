@@ -1,0 +1,117 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container-fluid">
+
+    <!-- LOGO + BRAND -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+      <img src="assets/logo.webp"
+           alt="TripEase Logo"
+           style="height: 40px; width: 40px; object-fit: contain;"
+           class="me-2">
+
+      <span class="fw-bold">Tripease</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+
+    
+     
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="loggedIn">
+
+          <!-- COMMON -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+              Home
+            </a>
+          </li>
+
+          <!-- ================= USER ================= -->
+          <ng-container *ngIf="isUser">
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/booked" routerLinkActive="active">
+                Booked
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/cancelled" routerLinkActive="active">
+                Cancelled
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/bookmark" routerLinkActive="active">
+                Bookmark
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/report" routerLinkActive="active">
+                Report
+              </a>
+            </li>
+
+          </ng-container>
+
+          <!-- ================= ADMIN ================= -->
+          <ng-container *ngIf="isAdmin">
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin/bookings" routerLinkActive="active">
+                Bookings
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin/hotels" routerLinkActive="active">
+                List Hotels
+              </a>
+            </li>
+
+          </ng-container>
+
+        </ul>
+
+      <!-- RIGHT SIDE (USER PROFILE + LOGOUT) -->
+       <ul class="navbar-nav ms-auto" *ngIf="loggedIn">
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileMenu"
+              role="button" data-bs-toggle="dropdown">
+                <img src="assets/user.avif"
+                  alt="Profile"
+                  style="height: 35px; width: 35px; border-radius: 50%; object-fit: cover;">
+            </a>
+            
+
+          <ul class="dropdown-menu dropdown-menu-end">
+
+            <li>
+              <a class="dropdown-item" routerLink="/profile">Profile</a>
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/help">Help</a>
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li>
+              <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul> 
+
+    </div>
+  </div>
+</nav>

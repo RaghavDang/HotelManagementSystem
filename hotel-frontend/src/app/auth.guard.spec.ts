@@ -1,0 +1,38 @@
+// import { TestBed } from '@angular/core/testing';
+// import { CanActivateFn } from '@angular/router';
+
+// import { authGuard } from './auth.guard';
+
+// describe('authGuard', () => {
+//   const executeGuard: CanActivateFn = (...guardParameters) => 
+//       TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//   });
+
+//   it('should be created', () => {
+//     expect(executeGuard).toBeTruthy();
+//   });
+// });
+
+import { TestBed } from '@angular/core/testing';
+import { AuthGuard } from './auth.guard';
+
+
+describe('AuthGuard', () => {
+  let guard: AuthGuard;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [AuthGuard]
+    });
+
+    guard = TestBed.inject(AuthGuard);
+  });
+
+  it('should allow activation', () => {
+    expect(guard.canActivate()).toBeTrue();
+  });
+});

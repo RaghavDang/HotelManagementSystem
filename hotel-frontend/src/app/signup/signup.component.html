@@ -1,0 +1,71 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+
+    <div class="card p-4 shadow">
+
+      <h3 class="text-center mb-3">Sign Up</h3>
+
+      <form (ngSubmit)="submit()">
+
+        <!-- NAME -->
+        <input class="form-control mb-3"
+               placeholder="Your Name"
+               [(ngModel)]="name"
+               name="name"
+               required>
+
+        <!-- EMAIL -->
+        <input class="form-control mb-3"
+               placeholder="Email"
+               [(ngModel)]="email"
+               name="email"
+               required>
+
+        <!-- PASSWORD -->
+        <input class="form-control mb-3"
+               type="password"
+               placeholder="Password"
+               [(ngModel)]="password"
+               name="password"
+               required>
+
+               <!-- <input class="form-control mb-3"
+               placeholder="Default Location"
+               [(ngModel)]="defaultLocation"
+               name="defaultLocation"
+               required> -->
+               
+               <!-- DEFAULT LOCATION -->
+               <select class="form-control" [(ngModel)]="defaultLocation" name="defaultLocation">
+                <option value="" disabled selected >Select location</option>
+
+                <option *ngFor="let location of locations" [value]="location">
+                  {{ location }}
+                </option>
+                
+               </select>
+
+               <br>
+
+
+        <!-- DEFAULT AMOUNT -->
+        <input class="form-control mb-3"
+               type="number"
+               placeholder="Default Max Amount"
+               [(ngModel)]="defaultAmount"
+               name="defaultAmount"
+               required>
+
+        <button class="btn btn-primary w-100 mb-3">Sign Up</button>
+
+      </form>
+
+      <p class="text-center">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </p>
+
+    </div>
+
+  </div>
+</div>

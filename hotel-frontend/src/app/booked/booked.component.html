@@ -1,0 +1,185 @@
+<h3>Booked Hotels</h3>
+
+<div class="d-flex justify-content-end mb-3">
+  <button class="btn btn-outline-primary btn-sm me-2"
+          (click)="viewType='card'">Card View</button>
+
+  <button class="btn btn-outline-success btn-sm"
+          (click)="viewType='list'">List View</button>
+</div>
+
+
+<!-- CARD VIEW -->
+
+<div *ngIf="viewType === 'card'" class="row">
+    <!-- <ng-container  *ngFor="let b of bookings.slice().reverse()"> -->
+    <ng-container  *ngFor="let b of bookings">
+      
+      <div class="col-md-4 mb-4" *ngIf="b.status === 'booked'">
+
+        <!-- <div class="card p-2 shadow-sm"> -->
+          <div class="card p-2 shadow-sm booking-card">
+
+
+            <h5>{{ b.hotelId.name }}</h5>
+            <img [src]="b.hotelId.images" alt="{{ b.hotelId.name }}"  class="img-fluid rounded-4 shadow-sm my-2"  style="cursor:pointer"
+          (click)="openBookingDetails(b)"/>
+            <p>{{ b.fromDate | date }} → {{ b.toDate | date }}</p>
+
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-warning btn-sm"
+                    *ngIf="b.status === 'booked'"
+                      (click)="openReschedule(b)">
+                Reschedule
+              </button>
+              <button class="btn btn-danger btn-sm"
+                      *ngIf="b.status === 'booked'"
+                      (click)="cancel(b._id)">
+                Cancel
+              </button>
+            </div>
+
+        </div>
+      </div>
+    </ng-container>
+</div>
+
+
+
+<!-- LIST VIEW -->
+<table *ngIf="viewType === 'list'" class="table table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th>Hotel</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  
+
+  
+  <tbody>
+    <!-- <ng-container *ngFor="let b of bookings.slice().reverse()"> -->
+    <ng-container *ngFor="let b of bookings">
+      <tr *ngIf="b.status === 'booked'">
+        <td>{{ b.hotelId.name }}</td>
+        <td>{{ b.fromDate | date }}</td>
+        <td>{{ b.toDate | date }}</td>
+        <td>{{ b.status }}</td>
+
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2"
+                  (click)="openReschedule(b)">
+            Reschedule
+          </button>
+
+          <button class="btn btn-danger btn-sm"
+                  (click)="cancel(b._id)">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+
+
+</table>
+
+<app-booking-modal
+  *ngIf="selectedBooking"
+  [booking]="selectedBooking"
+  (close)="selectedBooking=null"
+  (updated)="loadBookings()">
+</app-booking-modal>
+
+
+<!-- BOOKED DETAILS MODAL -->
+<div class="modal-backdrop fade show" *ngIf="selectedBookingDetails"></div>
+
+<div class="modal d-block" tabindex="-1"
+     *ngIf="selectedBookingDetails">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ selectedBookingDetails.hotelId.name }}
+        </h5>
+        <button class="btn-close"
+                (click)="selectedBookingDetails=null">
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <img [src]="selectedBookingDetails.hotelId.images"
+             class="img-fluid rounded shadow mb-3"
+             style="height:300px; object-fit:cover; width:100%;">
+
+        <div class="row">
+
+          <div class="col-md-6 mb-2">
+            <strong>From:</strong>
+            {{ selectedBookingDetails.fromDate | date }}
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <strong>To:</strong>
+            {{ selectedBookingDetails.toDate | date }}
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <strong>Booked On:</strong>
+            {{ selectedBookingDetails.createdOn | date:'medium' }}
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <strong>Room Type:</strong>
+            {{ selectedBookingDetails.roomType }}
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <strong>Location:</strong>
+            {{ selectedBookingDetails.hotelId.location }}
+          </div>
+
+        </div>
+
+        <div class="mt-3">
+          <strong>Description:</strong>
+          <p>{{ selectedBookingDetails.description || 'N/A' }}</p>
+        </div>
+
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button class="btn btn-secondary"
+                (click)="selectedBookingDetails=null">
+          Close
+        </button>
+      </div> -->
+
+            <div class="d-flex justify-content-between px-4 pb-4">
+              <button class="btn btn-warning btn-sm"
+                    *ngIf="selectedBookingDetails.status === 'booked'"
+                      (click)="openReschedule(selectedBookingDetails)"
+                      (click)="selectedBookingDetails=null">
+                Reschedule
+              </button>
+              <button class="btn btn-danger btn-sm"
+                      *ngIf="selectedBookingDetails.status === 'booked'"
+                      (click)="cancel(selectedBookingDetails._id)"
+                      (click)="selectedBookingDetails=null">
+                Cancel
+              </button>
+            </div>
+      
+       
+    </div>
+  </div>
+</div>
+
+

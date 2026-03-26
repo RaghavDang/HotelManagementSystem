@@ -1,0 +1,28 @@
+<h3>Cancelled Bookings</h3>
+
+<div class="row mt-3">
+  <div class="col-md-4 mb-4" *ngFor="let b of cancelled">
+    <div class="card p-3 shadow-sm">
+
+      <h5>{{ b.hotelId.name }}</h5>
+      <img 
+          [src]="b.hotelId.images" 
+          alt="Hotel Image"
+          class="img-fluid rounded-4 shadow-sm my-2"
+          >
+      <p class="text-danger">Cancelled</p>
+
+      <button class="btn btn-primary btn-sm" (click)="bookAgain(b)">
+        Book Again
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<app-booking-modal
+  *ngIf="bookagain"
+  [cbook]="bookagain"
+  (close)="bookagain = null"
+  (updated)="onRebooked()">
+</app-booking-modal>

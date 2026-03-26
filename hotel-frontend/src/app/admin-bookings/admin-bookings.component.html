@@ -1,0 +1,42 @@
+<!-- src/app/components/bookings/bookings.component.html -->
+<div class="bookings-container">
+  <h2>Bookings</h2>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading">Loading bookings...</div>
+
+  <!-- Error state -->
+  <div *ngIf="!loading && errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Table -->
+  <table *ngIf="!loading && !errorMessage && bookings.length > 0" class="bookings-table">
+    <thead>
+      <tr>
+        <th>Hotel</th>
+        <th>Location</th>
+        <th>User</th>
+        <th>From</th>
+        <th>To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of bookings ">
+        <td>{{ b.hotelId.name }}</td>
+        <td>{{ b.hotelId.location }}</td>
+        <td>{{ b.userId.name }}</td>
+        <!-- Use Angular date pipe; adjust format as needed -->
+        <!-- <td>{{ b.fromDate }}</td>
+        <td>{{ b.toDate }}</td> -->
+        <td>{{ b.fromDate | date: 'yyyy-MM-dd ' }}</td>
+        <td>{{ b.toDate   | date: 'yyyy-MM-dd ' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !errorMessage && bookings.length === 0" class="empty">
+    No bookings found.
+  </div>
+</div>

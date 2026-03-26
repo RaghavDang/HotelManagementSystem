@@ -1,0 +1,63 @@
+
+
+<!-- Dimmed Overlay -->
+
+<div class="modal-backdrop"
+     style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex; justify-content: center; align-items: center;">
+
+  <!-- CARD STYLE MODAL -->
+  <div class="modal-card shadow-lg p-4"
+       style="width: 600px; max-width: 90%; background: white; border-radius: 14px;">
+
+   
+       <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+      <h4 class="text-primary fw-bold m-0">
+        {{ booking ? 'Reschedule Booking' : cbook? 'Book: ' + cbook.hotelId.name :'Book: ' + hotel?.name }}
+      </h4>
+      <button type="button" class="btn-close" (click)="close.emit()"></button>
+    </div>
+
+
+    <!-- BODY -->
+    <div class="mb-3">
+      <label class="form-label fw-bold">From Date</label>
+      <input type="date" class="form-control form-control-lg" [(ngModel)]="fromDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">To Date</label>
+      <input type="date" class="form-control form-control-lg" [(ngModel)]="toDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">Room Type</label>
+      <select class="form-select form-select-lg" [(ngModel)]="roomType">
+        <option>Single</option>
+        <option>Double</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label fw-bold">Description (Optional)</label>
+      <textarea class="form-control form-control-lg" rows="3" [(ngModel)]="description"></textarea>
+    </div>
+
+    <!-- FOOTER BUTTONS -->
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-secondary me-2 px-4 py-2" (click)="close.emit()">
+        Cancel
+      </button>
+
+      <button class="btn btn-success px-4 py-2" (click)="submit()">
+        Confirm Booking
+      </button>
+    </div>
+
+  </div>
+
+</div>
+

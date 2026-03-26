@@ -1,0 +1,19 @@
+/* FULL PAGE BACKGROUND */
+.login-bg {
+  background-image: url('../../assets/hotel.jpg'); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;          /* full height */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optionally add a slight dark overlay */
+.login-overlay {
+  background: rgba(0, 0, 0, 0.4); /* adjust darkness */
+  padding: 40px;
+  border-radius: 10px;
+}

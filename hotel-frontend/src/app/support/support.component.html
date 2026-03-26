@@ -1,0 +1,30 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+
+    <div class="card shadow p-4">
+      <h3 class="text-center mb-3 text-primary">Help & Support</h3>
+
+      <form (ngSubmit)="sendHelp()">
+
+        <label>Name</label>
+        <input class="form-control mb-3" [(ngModel)]="name" name="name" required>
+
+        <label>Email</label>
+        <input class="form-control mb-3" [(ngModel)]="email" name="email" required>
+
+        <label>Issue Title</label>
+        <input class="form-control mb-3" [(ngModel)]="issueTitle" name="issueTitle" required>
+
+        <label>Description</label>
+        <textarea class="form-control mb-3" rows="4"
+                  [(ngModel)]="issueMessage" name="issueMessage" required>
+        </textarea>
+
+        <button class="btn btn-primary w-100">Submit Issue</button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
