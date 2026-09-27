@@ -143,7 +143,7 @@ ng serve
 ## 🌐 Application URLs
 
 * Frontend: https://hotel-management-system-silk-mu.vercel.app
-* Backend: [http://localhost:3000](https://hotelmanagementsystem-ii19.onrender.com/)
+* Backend: https://hotelmanagementsystem-ii19.onrender.com/
 
 ---
 
